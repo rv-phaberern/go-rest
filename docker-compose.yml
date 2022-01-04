@@ -1,0 +1,26 @@
+version: "3"
+services:
+  api:
+    container_name: api
+    environment:
+      - DBHOST=db.dev
+      - DBPORT=3306
+      - DBUSER=root
+      - DBPASS=password
+      - HTTPPORT=8000
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on: ["db"]
+  db:
+    image: mysql
+    restart: always
+    hostname: db.dev
+    container_name: db.dev
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./ddl/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+      - ./ddl/seed.sql:/docker-entrypoint-initdb.d/seed.sql
