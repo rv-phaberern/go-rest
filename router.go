@@ -1,15 +1,12 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/go-chi/chi/middleware"
 
 	"github.com/go-chi/chi"
 )
 
 func configureRouter(server *Server) *chi.Mux {
-	fmt.Println("configuring router")
 	r := chi.NewRouter()
 
 	r.Use(middleware.Logger)

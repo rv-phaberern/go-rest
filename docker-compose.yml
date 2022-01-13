@@ -7,7 +7,7 @@ services:
       - DBPORT=3306
       - DBUSER=root
       - DBPASS=password
-      - HTTPPORT=8000
+      - HTTPPORT=8080
     build: .
     ports:
       - "8080:8080"
